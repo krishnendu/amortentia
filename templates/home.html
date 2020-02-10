@@ -1,0 +1,22 @@
+
+    
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+  {% if confessions %}
+    {% for username,messege,time in confessions %}
+      {% if username not in admin %}
+        <label for="formGroupExampleInput">Anonymous :</label>
+      {% else %}
+        <label for="formGroupExampleInput">Admin :</label>
+      {% endif %}
+        <div class="alert alert-primary" role="alert">{{messege}}</div>
+        {{time}}
+        <br><br>
+
+    {% endfor %}
+  {% endif %}
+</div>
+
+{% endblock %}
