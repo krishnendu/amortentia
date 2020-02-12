@@ -17,17 +17,14 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from ridikkulus.views import ridikkulus as ridikkulus_view ,home as redirect_view,redirectview
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', include('blog.urls')),
-    path('', include('login.urls')),
-    path('', include('register.urls')),
-    path('profile/', include('profileapp.urls')),
-    path('', include('passwordreset.urls')),
     path('', include('anonymous.urls')),
-    #path('chat/', include('chat.urls')),
-    path('', include('apps.urls')),
+    path('ridikkulus/' , ridikkulus_view ,name='ridikkulus' ),
+    path('<str:url>/', redirectview , name='redirect'),
+    path('', redirect_view , name='redirect'),
 
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

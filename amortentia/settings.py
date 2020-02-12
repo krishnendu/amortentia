@@ -38,15 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps',
-    'login',
-    'register',
-    'profileapp',
-    'passwordreset',
-    #'blog',
-    #'chat',
     'anonymous',
-    #'imagekit',
-    'django_cleanup',
+    'pyrebase',
+    'ridikkulus',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +72,6 @@ TEMPLATES = [
     },
 ]
 
-AUTH_USER_MODEL='apps.Account'
 
 WSGI_APPLICATION = 'amortentia.wsgi.application'
 
@@ -140,13 +134,3 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'krishnenduwebserver@gmail.com'
-EMAIL_HOST_PASSWORD = 'lcwdiehhaaoimepq'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'My Site Team <noreply@mysite.com>'
-
-LOGIN_REDIRECT_URL='/'
-LOGIN_URL='/login'

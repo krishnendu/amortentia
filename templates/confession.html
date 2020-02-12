@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1></h1>
+        <form  method="post" class="col s12" >{% csrf_token %}
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Write your confession :</label>
+                <textarea class="form-control" name='anonymous' id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type='submit' class="btn btn-secondary">Send</button>
+            <br><br>
+        {% for message in messages  %}
+            {% if message.tags in 'alert-success' %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">{{ message }}</div>
+            {% endif %}
+        {% endfor %}
+        </form>
+        
+        {% endblock %}

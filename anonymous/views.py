@@ -1,26 +1,16 @@
 from django.shortcuts import render,redirect
 from django.conf import settings
 from .models import AnonymousClass
-from apps.models import Account
+from django.contrib import messages
 from apps.views import navbar
 # Create your views here.
 def anonymous(req):
-    username='anonymous'
-    if(req.user.is_authenticated ):
-        username=req.user.username
-    
     if(req.method=='POST'):
         anonymous=req.POST['anonymous']
-        obj=AnonymousClass(username=username,anonymous=anonymous)
+        obj=AnonymousClass(anonymous=anonymous)
         obj.save()
-        return redirect('/')
+        messages.success(req,"Confession saved")
+        return redirect('/confession')
     else:
-        return render(req,'anonymous.html',navbar(req))
+        return render(req,'confession.html',navbar(req))
 
-def confessions(req):
-    confessions = AnonymousClass.objects.all().order_by('-time').values_list('username','anonymous','time')
-    print(confessions)
-    admin = Account.objects.filter(is_admin=True).values_list('username',flat=True)
-    ob1={'admin' : admin , 'confessions' : confessions }
-    ob1.update(navbar(req))
-    return render(req, 'home.html', ob1)
